@@ -5,16 +5,59 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <script src="https://kit.fontawesome.com/52c6ec5bed.js" crossorigin="anonymous"></script>
     <title>Document</title>
 </head>
-<body>
+<body class="bg-dark">
     
-    <div id="app">
+    <div id="app" class="bg-light mx-auto p-4 mt-5 d-flex flex-column" style="max-width:800px;">
 
-        <div class="header">
+
+        <div class="header mx-auto">
             <h1> <s> To</s> Don't Do List</h1>
-            <h2></h2>
+            <h2>Erros não lembrados são repetidos</h2>
         </div>
+
+        <div id="addNew" class="btn btn-success my-4 mw-25">
+            <i class="fa-solid fa-face-sad-tear"></i>
+            <span>Registrar um erro</span>
+        </div>
+
+        <h4 class="my-3 mx-auto">Meus Erros</h4>
+
+        <div id="tasks">
+
+            <div id="task_exemplo" class=" card">
+                <h5 class="card-header">Task Exemplo</h5>
+                <div class="card-body">
+                    <span class="card-subtitle text-muted"> 11/08/2022 </span>
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti necessitatibus quas quae nemo est repellat sapiente! Possimus maxime rem est, nesciunt error provident debitis et expedita quia, aperiam eos officiis!</p>
+                    <div id="actions" class="d-flex justify-content-center">
+                        <button id="edit" class="btn btn-primary mx-3"><i class="fa-solid fa-pen-to-square"></i></button>
+                        <button id="delete" class="btn btn-danger mx-3"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     </div>
 
