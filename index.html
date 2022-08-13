@@ -5,12 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./style.css">
     <script src="https://kit.fontawesome.com/52c6ec5bed.js" crossorigin="anonymous"></script>
     <title>Document</title>
-</head>
-<body class="bg-dark">
+
     
-    <div id="app" class="bg-light mx-auto p-4 mt-5 d-flex flex-column" style="max-width:800px;">
+</head>
+<body>
+    
+    <div id="app" class=" mx-auto p-4 mt-5 d-flex flex-column" style="max-width:800px;">
 
 
         <div class="header mx-auto">
@@ -40,6 +43,38 @@
             </div>
 
 
+        </div>
+
+        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#meuModal"> Abrir Modal </button>
+
+        <div class="modal fade" id="meuModal" tabindex="-1" aria-labelledby="meuModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title">Diga seu erro e adicione uma breve descrição dele</h5>
+                    </div>
+                    
+                    <div class="modal-body">
+                        <h3>Meu erro</h3>
+                        <input id="titleInput" class="form-control" type="text">
+
+                        <h3>Dia em que cometi o erro</h3>
+                        <input id="dateInput" class="form-control" type="date">
+
+                        <h3>Como que fui cometer esse erro?</h3>
+                        <textarea id="textInput" class="form-control" name="" id="" cols="30" rows="5"></textarea>
+                    </div>
+
+                    <div class="modal-footer">
+                        <div class="modal-controls">
+                            <button type="submit" class="btn btn-primary">Salvar</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
         </div>
 
 
