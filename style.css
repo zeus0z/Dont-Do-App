@@ -33,3 +33,15 @@ body {
 #newTaskButton {
     max-width: 50rem;
 }
+
+.task {
+    min-width: 50%;
+}
+
+#tasks {
+    width: 100%;
+}
+
+.card-text {
+    background-color: rgba(255, 255, 255, 0.5);
+}

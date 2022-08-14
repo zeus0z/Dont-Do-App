@@ -6,7 +6,7 @@
                     <p class="card-text"></p>
                     <div id="actions" class="d-flex justify-content-center">
                         <button onClick="editTask(this)" id="edit" class="btn btn-primary mx-3" data-bs-toggle="modal" data-bs-target="#meuModal"><i class="fa-solid fa-pen-to-square"></i></button>
-                        <button onClick="deleteTask(this)" id="delete" class="btn btn-danger mx-3"><i class="fa-solid fa-trash"></i></button>
+                        <button onClick="deleteTask(this);createTask()" id="delete" class="btn btn-danger mx-3"><i class="fa-solid fa-trash"></i></button>
                     </div>
                 </div>
             </div>
@@ -20,7 +20,7 @@ const ALERT = document.getElementById("alert");
 const TASK_LIST = document.getElementById("tasks");
 
 
-let data = {};
+let data = [];
 
     
 
@@ -49,26 +49,35 @@ let inputValidation = () => {
 }
 
 let acceptData = () => {
-    data.title = TITLE_INPUT.value;
-    data.date = DATE_INPUT.value;
-    data.text = TEXT_INPUT.value;
-    console.log(data);
+    data.push({
+        title: TITLE_INPUT.value,
+        date: DATE_INPUT.value,
+        text: TEXT_INPUT.value,
+
+    })
+
+    localStorage.setItem("savedTasks",JSON.stringify(data));
 }
 
 let createTask = () => {
-    TASK_LIST.innerHTML+= `
-    <div class="task card my-2">
-        <h5 class="card-header">${data.title}</h5>
-        <div class="card-body">
-            <span class="card-subtitle text-muted"> ${data.date} </span>
-            <p class="card-text"> ${data.text}</p>
-            <div id="actions" class="d-flex justify-content-center">
-                <button onClick="editTask(this)" id="edit" class="btn btn-primary mx-3" data-bs-toggle="modal" data-bs-target="#meuModal"><i class="fa-solid fa-pen-to-square"></i></button>
-                <button onClick="deleteTask(this)" id="delete" class="btn btn-danger mx-3"><i class="fa-solid fa-trash"></i></button>
-            </div>
+    
+    TASK_LIST.innerHTML="";
+    data.map((x,y)=>{
+        return TASK_LIST.innerHTML+= `
+        <div id=${y} class="task card my-2">
+            <h5 class="card-header">${x.title}</h5>
+            <div class="card-body">
+                <span class="card-subtitle text-muted"> ${x.date} </span>
+                <p class="card-text"> ${x.text}</p>
+                <div id="actions" class="d-flex justify-content-center">
+                    <button onClick="editTask(this)" id="edit" class="btn btn-primary mx-3" data-bs-toggle="modal" data-bs-target="#meuModal"><i class="fa-solid fa-pen-to-square"></i></button>
+                    <button onClick="deleteTask(this);createTask()" id="delete" class="btn btn-danger mx-3"><i class="fa-solid fa-trash"></i></button>
+                </div>
+        </div>
     </div>
-</div>
-    `
+        `
+    })
+    
     resetForm();
 
 
@@ -81,7 +90,9 @@ let resetForm = () => {
 }
 
 let deleteTask = (i) =>{
-    i.parentElement.parentElement.parentElement.remove();
+    data.splice(i.parentElement.parentElement.parentElement.id,1);
+    localStorage.setItem("savedTasks",JSON.stringify(data));
+    console.log(data);
     
 }
 
@@ -92,6 +103,11 @@ let editTask = (i) =>{
     DATE_INPUT.value = thisTask.children[1].children[0].innerHTML;
     TEXT_INPUT.value = thisTask.children[1].children[1].innerHTML;
 
-    thisTask.remove();
+    deleteTask(i);
 
 }
+
+(()=>{
+    data = JSON.parse(localStorage.getItem("savedTasks")) || [];
+    createTask();
+})()
